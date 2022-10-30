@@ -27,13 +27,30 @@ class RescueBoat(Boat):
 
 
 class Pirate:
-    pass
+    def __init__(self, name: str, quote: str = "Ahoy!"):
+        self.name = name
+        self.quote = quote
 
 
 class Captain(Pirate):
-    pass
+    def __init__(self, name: str, quote: str):
+        super().__init__(name, quote)
+        self.crew = []
+
+    def add_crew_member(self, crewmember):
+        if self.crew.__contains__(crewmember):
+            raise Exception("Crew does not contain given member in add_crew_member")
+        else :
+            self.crew.append(crewmember)
+
+    def remove_crew_member(self, crewmember):
+        if self.crew.__contains__(crewmember):
+            self.crew.remove(crewmember)
+        else:
+            raise Exception("Crew does not contain given member in remove_crew_member")
 
 
 class Civilian:
     pass
+
 
