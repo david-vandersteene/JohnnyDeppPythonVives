@@ -1,5 +1,28 @@
-class Vessel :
-    pass
+from typing import Tuple
+
+from PIL import Image
+
+
+class Vessel:
+    def __init__(self, name: str, masts: int, acceleration: int, img_path: str):
+        self.name = name
+        self.masts = masts
+        self.acceleration = acceleration
+        self.img_path = img_path
+        self.speed = acceleration * masts
+
+    def ShowImage(self):
+        img = Image.open(self.img_path)
+        img.show()
+
+    def embark(self, passenger):
+        pass
+
+    def disembark(self, passenger=None):
+        pass
+
+    def sail(self, windstream: Tuple[bool, bool]):
+        pass
 
 
 class Boat(Vessel):
@@ -40,7 +63,7 @@ class Captain(Pirate):
         super().__init__(name, quote)
         self.crew = []
 
-    def add_crew_member(self, crewmember):
+    def add_crewmember(self, crewmember):
         if self.crew.__contains__(crewmember):
             raise Exception("Crew does not contain given member in add_crew_member")
         else :
