@@ -31,6 +31,9 @@ class Pirate:
         self.name = name
         self.quote = quote
 
+    def __repr__(self):
+        return self.name + ": " + self.quote
+
 
 class Captain(Pirate):
     def __init__(self, name: str, quote: str):
