@@ -5,6 +5,7 @@ from PIL import Image
 
 class Vessel:
     def __init__(self, name: str, masts: int, acceleration: int, img_path: str):
+        self.passengers = []
         self.name = name
         self.masts = masts
         self.acceleration = acceleration
@@ -16,17 +17,31 @@ class Vessel:
         img.show()
 
     def embark(self, passenger):
-        pass
+        self.passengers.append(passenger)
 
     def disembark(self, passenger=None):
-        pass
+        if self.passengers.__contains__(passenger):
+            self.passengers.remove(passenger)
+        else:
+            raise Exception("No such passenger on board")
 
+    # windstream [there's wind, headwind or not]
     def sail(self, windstream: Tuple[bool, bool]):
-        pass
+        if not windstream[0]:
+            # todo: how to check if passenger on board?
+            print(f"${type(self)} is just floating with ${len(self.passengers)} passengers")
+        elif windstream[1]:
+            print(f"${type(self)} has set sail! Full speed ahead! (${self.speed} km/h)")
+        else:
+            print(f"${type(self)} has set sail! But the wind is not in our favor. (${self.speed} km/h) ")
 
 
 class Boat(Vessel):
-    pass
+    def __init__(self, name: str, acceleration: int, img_path: str):
+        if 1 <= acceleration <= 25:
+            super(Boat, self).__init__(name, 1, acceleration, img_path)
+        else:
+            raise Exception("Acceleration is too high for a boat!")
 
 
 class Ship(Vessel):
