@@ -1,10 +1,7 @@
+from random import randint
 from typing import Tuple
 
-from PIL import Image
-
 from imgrender import render
-
-from random import randint
 
 
 class Vessel:
